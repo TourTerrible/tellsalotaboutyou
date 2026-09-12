@@ -101,5 +101,5 @@ export const packs: Pack[] = [
 ];
 
 export const labels: Record<Dimension, string> = {
-  optimization: "Optimization", planning: "Planning", control: "Control", uncertainty: "Ambiguity ease", conformity: "Independence", risk: "Risk comfort", social: "Social awareness", detail: "Attention to detail", novelty: "Novelty seeking", rules: "Rule flexibility", decision: "Decision speed", conflict: "Directness",
+  optimization: "Optimization", planning: "Planning", control: "Control", uncertainty: "Need for certainty", conformity: "Conformity", risk: "Risk comfort", social: "Social awareness", detail: "Attention to detail", novelty: "Novelty seeking", rules: "Rule adherence", decision: "Decision speed", conflict: "Directness",
 };
