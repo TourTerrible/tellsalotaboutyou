@@ -39,11 +39,18 @@
   .questions footer{display:none}
 }
 
-.tell-item{display:grid;gap:0}
+.tell-item{display:block;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
 .tell-item>summary{list-style:none}
 .tell-item>summary::-webkit-details-marker{display:none}
-.tell-item .tell-detail{border-radius:0 0 12px 12px;margin-top:-1px}
-.tell-item[open] .tell{border-radius:12px 12px 0 0;background:#f0efe9;border-color:var(--ink)}
+.tell-item .tell{border:0;border-radius:0;padding:16px;gap:16px;min-height:64px}
+.tell-item .tell-copy{min-width:0;line-height:1.4;font-size:14px;letter-spacing:-.015em}
+.tell-item .tell b{flex-shrink:0;margin-left:0}
+.tell-item .tell-detail{border-radius:0;margin:0;padding:20px;border-top:1px solid var(--line);background:#f1f5e9;animation:none}
+.tell-item .tell-detail p{font-size:15px;line-height:1.6;letter-spacing:0;overflow-wrap:anywhere}
+.tell-item[open] .tell{border-radius:0;background:#fff}
+.tell-item .research-note{margin-top:20px;padding-top:18px;gap:8px}
+.tell-item .research-note p{font-size:14px;line-height:1.5}
+.tell-item .research-note small{font-size:12px;line-height:1.5}
 .when-open{display:none}
 .tell-item[open] .when-closed{display:none}
 .tell-item[open] .when-open{display:inline}
@@ -65,7 +72,24 @@
 .reset:hover{color:var(--ink)}
 .reveal .reset:hover{color:var(--paper)}
 
+.landing-inner{padding-bottom:56px}
+.landing-inner h1{line-height:1;letter-spacing:-.065em}
+.landing-inner h1 em{letter-spacing:-.07em}
+.landing-inner .start-button{margin-top:40px;min-height:52px;min-width:140px;justify-content:space-between}
+.tells-list{gap:10px;margin-top:12px}
+.unlock>i{margin-bottom:0}
+.answers button{line-height:1.4}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.reveal button:focus-visible{outline-color:var(--lime)}
+
 @media(max-width:620px){
   .header-actions{gap:12px}
   .reset{font-size:11px}
+  .landing-inner{padding-top:clamp(72px,13vh,110px);padding-inline:24px}
+  .landing-inner h1{font-size:clamp(48px,13vw,78px)}
+  .landing-inner .start-button{margin-top:32px}
+  .tell-item .tell{padding:13px;gap:12px}
+  .tell-item .tell-detail{padding:16px}
+  .question-card h1{line-height:1.1;letter-spacing:-.04em}
+  .answers button{font-size:14px;min-height:52px}
 }

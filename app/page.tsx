@@ -56,7 +56,7 @@ export default function Home() {
   const reset = () => { localStorage.removeItem(storageKey); setState(empty); };
   if (!ready) return <main className="app-shell" />;
 
-  if (state.screen === "landing") return <main className="app-shell landing"><div className="orb orb-one"/><div className="orb orb-two"/><section className="landing-inner"><p className="eyebrow"><span className="pulse"/> an experiment in small signals</p><h1>tells<br/>a lot<br/><em>about you.</em></h1><p className="intro">Five odd little questions. One surprisingly specific observation.</p><button className="start-button" onClick={start}>start <ArrowRight size={18}/></button></section><footer>answer quickly. there are no right answers.</footer></main>;
+  if (state.screen === "landing") return <main className="app-shell landing"><div className="orb orb-one"/><div className="orb orb-two"/><section className="landing-inner"><p className="eyebrow"><span className="pulse"/> an experiment in small signals</p><h1>tells<br/>a lot<br/><em>about you.</em></h1><button className="start-button" onClick={start}>start <ArrowRight size={18}/></button></section><footer>answer quickly. there are no right answers.</footer></main>;
 
   if (state.screen === "profile") {
     const signals = profileSignals(state.totals).slice(0, 5);
@@ -64,7 +64,7 @@ export default function Home() {
     return <main className="app-shell profile"><header className="top"><button className="brand" onClick={reset}>tellsalotaboutyou</button><button className="reset" onClick={reset}><RotateCcw size={15}/> begin again</button></header><section className="profile-content"><p className="eyebrow">all twelve signals, considered together</p><h1>you tell us a lot<br/><em>without saying much.</em></h1><div className="personality-card"><span>your personality</span><h2>{personality.name}</h2><p>{personality.body}</p></div><div className="profile-grid"><div className="signals"><h2>your strongest signals</h2>{signals.map(([d, value], i) => <div className="signal" key={d}><div><span>{String(i + 1).padStart(2, "0")}</span>{labels[d]}</div><b>{value}</b><i><i style={{ width: `${value}%` }}/></i></div>)}</div><div className="observations"><span className="star"><Sparkles size={18}/></span><p>{signals[0] && signals[1] ? `You balance ${labels[signals[0][0]].toLowerCase()} with ${labels[signals[1][0]].toLowerCase()}.` : "Your answers made a distinctive pattern."}</p><p>You are more interested in the shape of a situation than its label.</p><p>Small choices are where your preferences show up most clearly.</p></div></div><button className="share-button" onClick={share}>{copied ? "copied" : "share your results"} <Copy size={16}/></button><p className="fine-print profile-note">These are playful hypotheses from a short, non-clinical exercise.</p></section></main>;
   }
 
-  if (state.screen === "reveal" && result) return <main className="app-shell reveal"><header className="top"><button className="brand" onClick={reset}>tellsalotaboutyou</button><div className="header-actions"><span>{state.completed.length + 1} of {packs.length}</span><button className="reset" onClick={reset}><RotateCcw size={14}/> reset</button></div></header><section className="reveal-card"><p className="eyebrow"><span className="pulse"/> your result</p><div className="reveal-number">0{state.completed.length + 1}</div><h1>{result.reveal.title}</h1><p className="reveal-body">{result.reveal.body}</p><button className="next-button" onClick={continueToNext}>{state.completed.length + 1 === packs.length ? "view full profile" : "continue"} <ArrowRight size={18}/></button><p className="fine-print">{result.reveal.note}</p></section></main>;
+  if (state.screen === "reveal" && result) return <main className="app-shell reveal"><header className="top"><button className="brand" onClick={reset}>tellsalotaboutyou</button><div className="header-actions"><span>{state.completed.length + 1} of {packs.length}</span><button className="reset" onClick={reset}><RotateCcw size={14}/> reset</button></div></header><section className="reveal-card"><p className="eyebrow"><span className="pulse"/> your result</p><div className="reveal-number">0{state.completed.length + 1}</div><h1>{result.reveal.title}</h1><p className="reveal-body">{result.reveal.body}</p><button className="next-button" onClick={continueToNext}>{state.completed.length + 1 === packs.length ? "view full profile" : "continue"} <ArrowRight size={18}/></button></section></main>;
 
   const question = pack.questions[state.questionIndex];
   const answeredHere = state.answers.filter(answer => answer !== undefined).length;
@@ -103,7 +103,6 @@ export default function Home() {
         <div className="unlock">
           <div><span>next tell</span><b>unlocks at {nextUnlock}</b></div>
           <i><i style={{ width: `${Math.min(100, (totalAnswers / nextUnlock) * 100)}%` }}/></i>
-          <p>{totalAnswers} small answers collected · another pattern is taking shape</p>
         </div>
         <div className="tells-list">
           {completedNewest.map(({ tell, index }) => {
@@ -115,8 +114,6 @@ export default function Home() {
                   <b><span className="when-closed">expand</span><span className="when-open">close</span></b>
                 </summary>
                 <article className="tell-detail">
-                  <span>full observation</span>
-                  <h2>{tell.title}</h2>
                   <p>{tell.body}</p>
                   <div className="research-note">
                     <b>{researchNotes[tellPack.id].level}</b>
